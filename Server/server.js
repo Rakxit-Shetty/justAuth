@@ -1,22 +1,20 @@
-const express=require('express');
-const cors = require("cors");
-const app=express();
+require("dotenv").config();
 
-// Body parser
-app.use(express.json({ limit: "10kb" }));
+process.on("uncaughtException", (err) => {
+    console.log("Uncaught Exception! Shutting down...");
+    console.error("Error:", err);
+    process.exit(1);
+  });
 
-app.use(cors());
+  const app = require("./app");
 
-app.use("/user",(req,res)=>{
-    console.log("hit2021");
-    return res.status(200).send({"name":"Rakshith"})
-});
+////////////////// DB conn
+  const mongoose =require('mongoose');
 
+  mongoose.connect(process.env.MONGO_URI)
+  .then((conn) => console.log(`MongoDB connected: ${conn.connection.host}`));
 
-app.post("/login",(req,res)=>{
+///////////////// listen on port 
 
-console.log("hello",req.body);
-
-})
-
-app.listen(2021,()=>console.log("hit server"));
+const PORT=process.env.PORT;
+app.listen(PORT || 2021,()=>console.log("server started at PORT:",PORT));

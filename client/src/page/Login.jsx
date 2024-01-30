@@ -1,12 +1,14 @@
 import { useState } from "react";
-import { useLoginMutation } from "../redux/apis/userApi";
+
+import { useLoginMutation } from "../redux/apis/UserApi";
 
 const Login = () => {
 
   const [login, { error, data }] = useLoginMutation();
-console.log(error,data)
+  console.log(error,data);
+
   const [formData,setFormData]=useState({email:"",password:""});
-// let {email,password}=formData;
+  let {email,password}=formData;
 
 const onInputChange=(e)=>{
 
@@ -26,11 +28,11 @@ login(formData)
       <div>Login</div>
 <div>
   <label>Email :</label>
-<input type="text" name="email" value={formData.email} onChange={onInputChange}/>
+<input type="text" name="email" value={email} onChange={onInputChange}/>
 </div>
 <div>
   <label>Password :</label>
-  <input type="password" name="password" value={formData.password} onChange={onInputChange}/>
+  <input type="password" name="password" value={password} onChange={onInputChange}/>
   </div>
 <button onClick={hitLoginApi} >login</button>
     </>
