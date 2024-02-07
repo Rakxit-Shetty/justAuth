@@ -5,6 +5,7 @@ import Dashbord from './page/Dashbord'
 
 import './App.css'
 import RootLayout from "./component/layout/RootLayout";
+import ProtectedRoute from "./component/layout/ProtectedRoute";
 
 function App() {
 let router=createBrowserRouter([{
@@ -21,8 +22,10 @@ let router=createBrowserRouter([{
     {
       path: "",
       element: (
-        
-          <Dashbord />
+        <ProtectedRoute>
+ <Dashbord />
+        </ProtectedRoute>
+         
       ),
     },
 

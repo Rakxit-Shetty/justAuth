@@ -1,17 +1,30 @@
 /* eslint-disable no-unused-labels */
 import { createApi,fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { getUser } from "../slices/userSlice";
 // import { customFetchBase } from "../customFetchBase"
 export const userApi=createApi({
     reducerPath:"userApi",
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:2021/' }),//"http://localhost:2021/",//customFetchBase,
    endpoints:(builder)=>({
+
     getMe: builder.query({
+      providesTags: () => [{ type: "me" }],
       query: () => ({
-        url: "/user",
+        url: "/user/me",
         method: "GET",
-        
       }),
+
+      async onQueryStarted(args, obj) {
+        try {
+          const { data } = await obj.queryFulfilled;
+          obj.dispatch(getUser(data.data.user));
+        } catch (error) {
+          if (import.meta.env.DEV) console.error("Error:", error);
+        }
+      },
     }),
+
+
 //* Login ******************************************************
 login: builder.mutation({
   query: (formData) => ({

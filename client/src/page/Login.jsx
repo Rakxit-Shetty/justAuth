@@ -1,5 +1,5 @@
 import { useState } from "react";
-import logo from "../assets/rakki.jpg";
+import logo from "../assets/meta.png";
 import { useLoginMutation } from "../redux/apis/UserApi";
 import "./Login.css";
 

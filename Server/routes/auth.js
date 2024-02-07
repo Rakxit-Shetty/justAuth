@@ -57,6 +57,16 @@ router.post("/login",async (req,res)=>{
 console.log(err)
     }
 
-})
+});
+
+router.get("/load-user", auth, async (req, res) => {
+  try {
+    const user = await userModel.findById(req.user.id).select("-password");
+    console.log("user",user);
+    res.json(user);
+  } catch (err) {
+    res.status(STATUS_CODE_500).send(SERVER_ERROR);
+  }
+});
 
 module.exports = router;
