@@ -1,6 +1,6 @@
 // import React from 'react'
 import { useGetMeQuery } from "../../redux/apis/UserApi";
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import { useOutlet, Navigate } from "react-router-dom";
 
 
@@ -10,10 +10,11 @@ const ProtectedRoute = () => {
     const { user } = useSelector((state) => state.user);
     const { isLoading, data } = useGetMeQuery();
 
-console.log(user,isLoading)
+console.log("P route",user,isLoading,data);
+
   return (
     <>
-{data ? outlet : <Navigate to="/login" replace />}
+{data ? outlet : <Navigate to="/login" replace/>}
     </>
   )
 }

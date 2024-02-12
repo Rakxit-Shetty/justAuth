@@ -11,8 +11,8 @@ app.use(cors());
 app.use("/api/auth", require("./routes/auth"));
 
 
-app.use("/user",(req,res)=>{
-    return res.status(200).send({"name":"Rakshith"})
+app.use("/test",(req,res)=>{
+    return res.status(200).send({"name":"Rakshith89898"})
 });
 
 // app.post("/login",(req,res)=>{

@@ -16,7 +16,10 @@ const userSlice = createSlice({
       getUser(state, { payload }) {
         state.user = payload;
       },
-
+      setTokens(state, { payload }) {
+        state.accessToken = payload.accessToken;
+       
+      },
       resetUser() {
         return initialState;
       },
@@ -25,6 +28,7 @@ const userSlice = createSlice({
 
 export const {
     resetUser,
+    setTokens,
     getUser,
   } = userSlice.actions;
   export const userReducer = userSlice.reducer;

@@ -59,8 +59,9 @@ console.log(err)
 
 });
 
-router.get("/load-user", auth, async (req, res) => {
+router.use("/me",auth, async (req, res) => {
   try {
+    console.log("HITTTTTTTT")
     const user = await userModel.findById(req.user.id).select("-password");
     console.log("user",user);
     res.json(user);
