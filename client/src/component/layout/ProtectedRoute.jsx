@@ -4,19 +4,26 @@ import {  useSelector } from "react-redux";
 import { useOutlet, Navigate } from "react-router-dom";
 
 
-const ProtectedRoute = () => {
+const ProtectedRoute = ({reverse}) => {
     // const dispatch = useDispatch();
     const outlet = useOutlet();
     const { user } = useSelector((state) => state.user);
     const { isLoading, data } = useGetMeQuery();
 
-console.log("P route",user,isLoading,data);
 
-  return (
-    <>
-{data ? outlet : <Navigate to="/login" replace/>}
-    </>
-  )
+    
+
+if (reverse) {
+  return <Navigate to={"/"} replace />;
+} else{
+  // if (reverse) {
+  //   return  outlet;
+  // } else {
+    return <Navigate to="/login" replace />;
+  // }
+}
+
+  
 }
 
 export default ProtectedRoute

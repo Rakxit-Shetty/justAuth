@@ -16,7 +16,10 @@ let router=createBrowserRouter([{
     {
       path: "login",
       element: (
+        <ProtectedRoute reverse>
           <Login />
+        </ProtectedRoute>
+         
       ),
     },
     {
